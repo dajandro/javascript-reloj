@@ -1,36 +1,112 @@
-$traffic-light-width: 200px;
-$light-size: $traffic-light-width*0.75;
-.traffic-light{
+/*
+  Daniel Orozco 13312
+  UVG
+  Sistemas y Tecnologias Web
+  2016
+*/
+
+$clock-left: 200px;
+$clock-top: 200px;
+$clock-bk-color: lightgray;
+$clock-border-line: 4px;
+$clock-border-round: 50%;
+$clock-size: 500px;
+$clock-border-color: black;
+$hours-size: 40px;
+
+.wrapper{
+  background: $clock-bk-color;
+  height: $clock-size;
+  left: $clock-left;
+  position: relative;
+  top: $clock-top;
+  width: $clock-size;
+}
+
+.clock{
+  background: white;
+  border-radius: $clock-border-round;
+  border: $clock-border-line solid $clock-border-color;
+  height: 80%;
+  left: 9%;
+  position: relative;
+  top: 10%;
+  width: 80%;
+}
+
+.dot{
   background: black;
-  margin-bottom: 10px;
-  padding: $traffic-light-width*0.1;
-  width: $traffic-light-width;
+  border-radius: 50%;
+  height: 5%;
+  left: 47.5%;
+  position: relative;
+  top: 48%;
+  width: 5%;
+}
 
-  .light{
-    background: white;
-    border-radius: 100%;
-    height: $light-size;
-    margin: 0 auto 10px auto;
-    width: $light-size;
-
-    &.green{
-      background: #0f0;
-    }
-
-    &.red{
-      background: red;
-    }
-
-    &.yellow{
-      background: yellow;
-    }
-
-    &.off{
-      opacity: 0.3;
-    }
-
-    &:last-child{
-      margin-bottom: 0;
-    }
+@for $i from 1 through (12){
+  .h#{$i}{
+    font-size: $hours-size;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;    
   }
 }
+
+.hours-wrapper, .minutes-wrapper, .seconds-wrapper{
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.hours {
+  background: #000;
+  height: 20%;
+  left: 48.75%;
+  position: absolute;
+  top: 30%;
+  transform-origin: 50% 100%;
+  width: 2.5%;
+}
+
+.minutes {
+  background: #000;
+  height: 40%;
+  left: 49%;
+  position: absolute;
+  top: 10%;
+  transform-origin: 50% 100%;
+  width: 2%;
+  transform: rotateZ(80deg);
+}
+
+.seconds {
+  background: red;
+  height: 45%;
+  left: 49.5%;
+  position: absolute;
+  top: 14%;
+  transform-origin: 50% 80%;
+  width: 1%;
+  z-index: 8;
+}
+
+/*@keyframes rotate {
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.hours-wrapper {
+  animation: rotate 15s infinite linear;
+}
+.minutes-wrapper {
+  animation: rotate 10s infinite linear;
+}
+.seconds-wrapper {
+  animation: rotate 5s infinite linear;
+}*/
