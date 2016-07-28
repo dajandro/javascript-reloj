@@ -5,13 +5,16 @@
   2016
 */
 
-$clock-left: 200px;
-$clock-top: 200px;
+$btn-font-size: 25px;
 $clock-bk-color: lightgray;
+$clock-border-color: black;
 $clock-border-line: 4px;
 $clock-border-round: 50%;
+$clock-left: 200px;
 $clock-size: 500px;
-$clock-border-color: black;
+$clock-top: 200px;
+$digital-font: "Comic Sans MS";
+$digital-size: $clock-size / 5;
 $hours-size: 40px;
 
 .wrapper{
@@ -23,7 +26,7 @@ $hours-size: 40px;
   width: $clock-size;
 }
 
-.clock{
+.analog-clock{
   background: white;
   border-radius: $clock-border-round;
   border: $clock-border-line solid $clock-border-color;
@@ -44,14 +47,47 @@ $hours-size: 40px;
   width: 5%;
 }
 
+.labels{
+  position: relative;
+}
+
+// Calculo de left y top para los labels de las horas en analogo
 @for $i from 1 through (12){
   .h#{$i}{
     font-size: $hours-size;
-    bottom: 0;
-    left: 0;
+    @if $i == 1 or $i == 5{
+      left: 70%;
+    }
+    @if $i == 2 or $i == 4{
+      left: 85%;
+    }
+    @if $i == 11 or $i == 7{
+      left: 20%;
+    }
+    @if $i == 10 or $i == 8{
+      left: 8%;
+    }
+    @if $i == 3{
+      left: 93%;
+    }
+    @if $i == 9{
+      left: 2%;
+    }
     position: absolute;
-    right: 0;
-    top: 0;    
+    @if $i < 6{
+      top: ($i) * 15%;      
+    }
+    @if $i > 6 and $i < 12{
+      top: (12 - $i) * 15%;
+    }
+    @if $i == 6{
+      left: 45%;
+      top: 88%;
+    }
+    @if $i == 12{
+      left: 45%;
+      top: 0;
+    }    
   }
 }
 
@@ -63,7 +99,7 @@ $hours-size: 40px;
   top: 0;
 }
 
-.hours {
+.hours-analog{
   background: #000;
   height: 20%;
   left: 48.75%;
@@ -73,7 +109,7 @@ $hours-size: 40px;
   width: 2.5%;
 }
 
-.minutes {
+.minutes-analog{
   background: #000;
   height: 40%;
   left: 49%;
@@ -81,10 +117,9 @@ $hours-size: 40px;
   top: 10%;
   transform-origin: 50% 100%;
   width: 2%;
-  transform: rotateZ(80deg);
 }
 
-.seconds {
+.seconds-analog{
   background: red;
   height: 45%;
   left: 49.5%;
@@ -95,18 +130,32 @@ $hours-size: 40px;
   z-index: 8;
 }
 
-/*@keyframes rotate {
-  100% {
-    transform: rotateZ(360deg);
-  }
+.hours-digital, .minutes-digital, .seconds-digital, .double-dots{
+  font-size: $digital-size;
+  font-family: $digital-font;
+  position: absolute;
+  top: 35%;
 }
 
-.hours-wrapper {
-  animation: rotate 15s infinite linear;
+#hm{
+  left: 25%;
 }
-.minutes-wrapper {
-  animation: rotate 10s infinite linear;
+
+.minutes-digital{
+  left: 35%;
 }
-.seconds-wrapper {
-  animation: rotate 5s infinite linear;
-}*/
+
+#ms{
+  left: 65%;
+}
+
+.seconds-digital{
+  left: 75%;
+}
+
+#change{
+  font-size: $btn-font-size;
+  left: $clock-left + $clock-size / 2 - $btn-font-size;
+  position: relative;
+  top: $clock-top + 20px;
+}
