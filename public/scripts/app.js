@@ -39,20 +39,20 @@ var horasDigital = 0;
 
 function time()
 {
-  // Intervalo al que se llama la funcion
+  // Intervalo al que se llama la funcion [milisegundos]
   setInterval(clock, 1000);
 }
 
 function clock()
 {
   // Reseteo e incremento de valores
-  if (segundos == 60){
+  if (segundos == 59){
     segundos = 0;
     minutos++;    
   }
   if (minutos == 60)
   {
-    minutos = 0;
+    minutos = 1;
     horas++;
     horasDigital++;
   }
